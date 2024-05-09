@@ -1,11 +1,13 @@
+// Import necessary modules
 const fs = require('fs');
 const inquirer = require('inquirer');
 const { Circle, Square, Triangle } = require('./lib/shapes');
 
+// SVG class to generate SVG content
 class Svg {
   constructor() {
-    this.textElement = '';
-    this.shapeElement = '';
+    this.textElement = ''; // Initialize text element
+    this.shapeElement = ''; // Initialize shape element
   }
 
   render() {
@@ -21,6 +23,7 @@ class Svg {
   }
 }
 
+// Array of questions for user input
 const questions = [
   {
     type: 'input',
@@ -45,6 +48,7 @@ const questions = [
   },
 ];
 
+// Function to write SVG content to a file
 function writeToFile(fileName, data) {
   fs.writeFile(fileName, data, (err) => {
     if (err) {
@@ -55,19 +59,20 @@ function writeToFile(fileName, data) {
   });
 }
 
+// Asynchronous function to initialize the SVG generation process
 async function init() {
   console.log('Starting init');
   const svg = new Svg();
 
   try {
-    const answers = await inquirer.prompt(questions);
+    const answers = await inquirer.prompt(questions); // Prompt user with questions and await their answers
 
-    const userText = answers.text.length > 0 && answers.text.length < 4 ? answers.text : '';
+    const userText = answers.text.length > 0 && answers.text.length < 4 ? answers.text : ''; // Extract user inputs from answers
     const userFontColor = answers.textColor;
     const userShapeColor = answers.shapeColor;
     const userShapeType = answers.shapeType.toLowerCase();
 
-    let userShape;
+    let userShape; // Variable to hold the selected shape object
     switch (userShapeType) {
       case 'circle':
         userShape = new Circle();
@@ -83,17 +88,17 @@ async function init() {
         return;
     }
 
-    userShape.setColor(userShapeColor);
-    svg.setTextElement(userText, userFontColor);
-    svg.setShapeElement(userShape);
+    userShape.setColor(userShapeColor); // Set the color of the selected shape
+    svg.setTextElement(userText, userFontColor); // Set the text element in the SVG
+    svg.setShapeElement(userShape); // Set the shape element in the SVG
 
     const svgContent = svg.render();
     const svgFileName = 'logo.svg';
     writeToFile(svgFileName, svgContent);
   } catch (error) {
-    console.error('Error generating logo:', error);
+    console.error('Error generating logo:', error); // Log error if SVG generation fails
   }
 }
 
-init();
+init();// Call the initialization function to start the process
 
