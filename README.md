@@ -25,7 +25,7 @@
   
   ## Usage
   
-  The usage for this application is to quickly create a svg logo by using the terminal. This meathod is useful becuase the svg logo will be able to scale its size without messing with the image. ![image](https://github.com/Lrbenjamin/LogoGenerator/assets/161282417/5b0a2402-386b-49d7-a21f-566bb050382a)
+  The usage for this application is to quickly create a svg logo by using the terminal. This meathod is useful becuase the svg logo will be able to scale its size without messing with the image. ![image](https://github.com/Lrbenjamin/LogoGenerator/assets/161282417/5b0a2402-386b-49d7-a21f-566bb050382a) Link for youtube walkthrough: https://youtu.be/8pHiT89o28I
 
   
   ## Contributing
